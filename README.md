@@ -46,3 +46,48 @@ This project is a web-based data analytics application built using Flask that an
 - **Association Rules:** mlxtend (Apriori, association_rules)
 
 ## Project Structure
+├── app.py
+├── templates/
+│ ├── home.html
+│ ├── choose_option.html
+│ ├── casestudy.html
+│ ├── prediction.html
+│ ├── prediction_input.html
+│ ├── prediction_result.html
+│ └── association_rules.html
+├── static/
+├── dataset.csv
+└── README.md
+
+
+## How to Run the Project
+1. Install required libraries:
+   ```bash
+   pip install flask pandas numpy scikit-learn plotly mlxtend
+
+
+Run the Flask application:
+
+python app.py
+
+
+Open the browser and navigate to:
+
+http://127.0.0.1:5000/
+
+
+Upload the salary dataset (CSV) to begin analysis.
+
+Use Cases
+
+Analyze salary distribution across departments and skills
+
+Compare the impact of technical skills on salary
+
+Predict salaries based on selected features
+
+Identify skill combinations that can potentially boost salary
+
+Conclusion
+
+This project demonstrates an end-to-end data analytics pipeline by combining visualization, machine learning, and association rule mining within an interactive web application. It provides both descriptive and predictive insights, making it a strong academic and portfolio-level data analytics.
