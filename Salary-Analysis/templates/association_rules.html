@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">Association Rules</h1>
+    
+        <div class="row">
+            <!-- Left Column: Skill Selection Form -->
+            <div class="col-md-6">
+                <div class="association-form">
+                    <h2 class="table-heading text-center">Select Skills</h2>
+                    <form method="POST" action="{{ url_for('association_rules_view') }}">
+                        <div class="mb-4">
+                            <div class="form-check">
+                                {% for skill in unique_values['skills'] %}
+                                    <label class="form-check-label">
+                                        <input type="checkbox" class="form-check-input" name="skills" value="{{ skill }}">
+                                        {{ skill }}
+                                    </label><br>
+                                {% endfor %}
+                            </div>
+                        </div>
+    
+                        <button type="submit">Show Associated Skills</button>
+                    </form>
+                </div>
+            </div>
+    
+            <!-- Right Column: Salary Insights and Association Rules -->
+            <div class="col-md-6">
+                {% if selected_skills %}
+                    <div class="mb-4">
+                        <h2 class="table-heading text-center">Salary Insights</h2>
+                        {% if current_salary is not none %}
+                            <div class="alert alert-info">
+                                <strong>With your current skills ({{ selected_skills|join(', ') }}), the average salary is:</strong> <span style="color: #7c3aed; font-weight: bold;">₹{{ current_salary }}</span>
+                            </div>
+                        {% else %}
+                            <div class="alert alert-warning">
+                                No salary data found for your current skill combination.
+                            </div>
+                        {% endif %}
+                        {% if skill_boosts and skill_boosts|length > 0 %}
+                            <div class="alert alert-success">
+                                <strong>Want a salary boost?</strong><br>
+                                {% for boost in skill_boosts %}
+                                    If you learn <strong>{{ boost.skills_str }}</strong>, your expected salary could become <span style="color: #059669; font-weight: bold;">₹{{ boost.new_salary }}</span> (increase of <span style="color: #059669;">₹{{ boost.boost }}</span>)<br>
+                                {% endfor %}
+                            </div>
+                        {% else %}
+                            <div class="alert alert-secondary">
+                                No additional skill found that increases your salary based on current data.
+                            </div>
+                        {% endif %}
+                    </div>
+                {% endif %}
+                {% if rules %}
+                <div class="scrollable-container">
+                    <h2 class="table-heading text-center">Rules</h2>
+                    <ul class="list-group">
+                        {% for rule in rules %}
+                            <li class="list-group-item">
+                                <strong>Antecedent:</strong> {{ rule['antecedents'] }} <br>
+                                <strong>Consequent:</strong> {{ rule['consequents'] }} <br>
+                                <strong>Confidence:</strong> {{ rule['confidence'] }} <br>
+                                <strong>Lift:</strong> {{ rule['lift'] }} <br>
+                                {% if rule['expected_salary'] is not none %}
+                                    <strong>Expected Salary:</strong> ₹{{ rule['expected_salary'] }} <br>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    {% endblock %}
