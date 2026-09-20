@@ -1,93 +1,39 @@
-# Salary Analysis and Prediction System
+# Salary Analysis & Prediction System
 
-## Overview
-This project is a web-based data analytics application built using Flask that analyzes salary datasets to extract insights, visualize trends, predict salaries using machine learning models, and generate association rules between skills. It integrates data preprocessing, exploratory data analysis, predictive modeling, and rule mining into a single interactive system.
+An interactive Flask application combining exploratory data analysis, salary prediction, visualization, and association-rule mining.
 
 ## Features
-- **Data Preprocessing**
-  - Handles missing values (mean for numerical, mode for categorical)
-  - Removes high-cardinality columns (>300 unique values)
-  - Automatically detects numerical, categorical, and skill-based features
+- Data preprocessing and missing-value handling
+- Interactive Plotly visualizations
+- Salary prediction using multiple regression models
+- Model comparison with MSE and R²
+- Apriori-based association-rule mining
+- Interactive Flask web interface
 
-- **Exploratory Data Analysis (EDA)**
-  - Interactive visualizations using Plotly:
-    - Bar charts
-    - Pie charts
-    - Box plots
-    - Histograms
-    - Scatter plots
-  - Analysis across departments, skills, and salary distributions
+## Machine Learning
+- Linear Regression
+- Ridge Regression
+- Support Vector Regression (SVR)
+- Random Forest Regressor
 
-- **Salary Prediction (Machine Learning)**
-  - Dynamic target and feature selection
-  - Categorical feature encoding using Label Encoding
-  - Train-test split (80/20)
-  - Model comparison using:
-    - Linear Regression
-    - Ridge Regression
-    - Support Vector Regression (SVR)
-    - Random Forest Regressor
-  - Performance evaluation using:
-    - Mean Squared Error (MSE)
-    - R² Score
-  - Actual vs Predicted salary visualization
+## Tech Stack
+- Python
+- Flask
+- Pandas
+- NumPy
+- Scikit-learn
+- Plotly
+- mlxtend
 
-- **Association Rule Mining**
-  - Uses Apriori algorithm to discover frequent skill combinations
-  - Generates association rules based on lift metric
-  - Predicts potential salary improvement by learning new skill combinations
-  - Recommends top skill boosts based on expected salary increase
-
-## Technologies Used
-- **Backend:** Python, Flask
-- **Data Processing:** Pandas, NumPy
-- **Machine Learning:** Scikit-learn
-- **Visualization:** Plotly
-- **Association Rules:** mlxtend (Apriori, association_rules)
-
-## Project Structure
-├── app.py
-├── templates/
-│ ├── home.html
-│ ├── choose_option.html
-│ ├── casestudy.html
-│ ├── prediction.html
-│ ├── prediction_input.html
-│ ├── prediction_result.html
-│ └── association_rules.html
-├── static/
-├── dataset.csv
-└── README.md
-
-
-## How to Run the Project
-1. Install required libraries:
-   ```bash
-   pip install flask pandas numpy scikit-learn plotly mlxtend
-
-
-Run the Flask application:
-
+## Run Locally
+```bash
+pip install -r requirements.txt
 python app.py
+```
 
+Then open `http://127.0.0.1:5000/`.
 
-Open the browser and navigate to:
-
-http://127.0.0.1:5000/
-
-
-Upload the salary dataset (CSV) to begin analysis.
-
-Use Cases
-
-Analyze salary distribution across departments and skills
-
-Compare the impact of technical skills on salary
-
-Predict salaries based on selected features
-
-Identify skill combinations that can potentially boost salary
-
-Conclusion
-
-This project demonstrates an end-to-end data analytics pipeline by combining visualization, machine learning, and association rule mining within an interactive web application. It provides both descriptive and predictive insights, making it a strong academic and portfolio-level data analytics.
+## Repository Structure
+- `Salary-Analysis/` — application source
+- `requirements.txt` — dependencies
+- `README.md` — documentation
